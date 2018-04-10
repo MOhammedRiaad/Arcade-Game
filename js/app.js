@@ -3,7 +3,9 @@ class Enemy {
        constructor() {
             // Variables applied to each of our instances go here,
             // we've provided one for you to get started
-        
+        this.x=200;
+        this.y=410;
+        this.speed= 70;
 
             // The image/sprite for our enemies, this uses
             // a helper we've provided to easily load images
@@ -33,7 +35,7 @@ class Player {
         this.sprite='images/char-boy.png';
         this.x = 200;
         this.y = 410;
-        this.speed =50;
+        this.speed =60;
         this.win = 0;
         this.active = true ;
         this.hearts = 3 ;
@@ -63,7 +65,19 @@ class Player {
 		if(action_p == 'down')
 		{
 				this.y += this.speed;
-		}
+        }
+        
+       
+    }
+    checkBroder(){
+        if (this.x <= 0 || this.x >= 420 || this.y <=0 || this.y >=430)
+        {
+                this.reset();
+        }
+    }
+    reset(){
+        this.x = 200;
+		this.y = 410;
     }
 
 }
@@ -74,7 +88,7 @@ class Player {
 
 let player = new Player();
 let allEnemies = [];
-for (let i = 0; i < 3; index++) {
+for (let i = 0; i < 3; i++) {
 
     allEnemies[i]= new Enemy() ; 
     
