@@ -1,0 +1,9 @@
+body {
+    text-align: center;
+}
+#player {
+flex-wrap: wrap;    
+width: 100px;
+list-style-type: none;
+display: inline-flex;
+}
