@@ -1,5 +1,11 @@
 // Enemies our player must avoid
+let st = true;
+let LifeDiv = document.querySelector('.life');
+let winDiv = document.querySelector('.Wins');
+LifeDiv.innerHTML = 'You have ( 5 ) Lives ' ;
+winDiv.innerHTML = 'You Won ( 0 ) Times ';
 
+ 
 var getRandomPosition = function() {
     var number = Math.floor((Math.random() * 3) + 1);
     return number;
@@ -12,8 +18,8 @@ class Enemy {
     // we've provided one for you to get started
     this.x= 0;
     this.y=((getRandomPosition())*60);
-// this.randomSettings();
-this.speed= ((getRandomPosition())*70);
+
+    this.speed= ((getRandomPosition())*70);
 
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
@@ -56,10 +62,11 @@ class Player {
         this.gemsCollected = 0;
     }
     update(dt){
+        this.checkGameWin();
         this.checkBroder();
         this.checkCollisions();
-        this.checkGameWin();
-
+        
+        this.checkGameOver();
                
     }
     render() {
@@ -71,10 +78,11 @@ class Player {
             alert('Game Over!!!');
             this.game = false;
             this.gameReset();
+            resetTimer();
         }
     }
     checkGameWin(){
-        if (this.y <=25)
+        if (this.y <=5)
         {
          this.winGame();
         }
@@ -85,21 +93,50 @@ class Player {
         this.win = 0;
         this.game = true;
         this.reset();
+        resetTimer();
+        
     }
     winGame(){
         this.win +=1 ;
+        winDiv.innerHTML = `You Won ( ${this.win} ) Times  ` ;
+        LifeDiv.innerHTML = `You have ( ${this.life} ) Lives `;
         alert('YOU WIN');
         this.reset();
+        switch (this.win) {
+            case 5:
+            allEnemies.push(new Enemy());
+            break;
+            case 10:
+            allEnemies.push(new Enemy());
+            break;
+            case 15:
+            allEnemies.push(new Enemy());
+            allEnemies.push(new Enemy());
+            break;
+            case 20:
+            allEnemies.push(new Enemy());
+            allEnemies.push(new Enemy());
+            allEnemies.push(new Enemy());
+            break;
+			
+		}
     }
     loseGame(){
         this.win -= 1;
         this.life -= 1;
+        LifeDiv.innerHTML = `You have ( ${this.life} ) Lives ` ;
+        winDiv.innerHTML = `You Won ( ${this.win} ) Times  `;
     }
     
 
 
     handleInput(action_p){
         
+        if(st==true){
+            startTimer();
+            st=false;
+        }
+         
 
         if(action_p == 'left')
         {
@@ -150,12 +187,18 @@ class Player {
 }
 
 }
+
+
 class Gem  {
     constructor() {
 
         this.sprite = 'images/gem-orange.png';
-        this.x = ((getRandomPosition()) * 4);
-        this.y = ((getRandomPosition()) * 4);
+        this.x = 0;
+        this.y = ((getRandomPosition()) * 5);
+    }
+
+    update(dt){
+
     }
 
 
@@ -163,6 +206,36 @@ class Gem  {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 }
+// @description game timer
+var second = 0, minute = 0; hour = 0;
+var timer = document.querySelector(".timer");
+timer.innerHTML = "0 mins 0 secs";
+var interval;
+function startTimer(){
+    interval = setInterval(function(){
+        timer.innerHTML = minute+"mins "+second+"secs";
+        second++;
+        if(second == 60){
+            minute++;
+            second=0;
+        }
+        if(minute == 60){
+            hour++;
+            minute = 0;
+        }
+    },1000);
+}
+
+function resetTimer(){
+    second=0;
+    minute=0;
+    hour=0;
+    var timer = document.querySelector(".timer");
+    timer.innerHTML = "0 mins 0 secs";
+    clearInterval(interval);
+    st=true;
+}
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
