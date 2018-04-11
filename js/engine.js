@@ -92,7 +92,7 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        //Gem.update();
+        gems.update();
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
@@ -158,7 +158,7 @@ var Engine = (function(global) {
         });
 
         player.render();
-      //  Gem.render();
+       gems.render();
     }
 
     /* This function does nothing but it could have been a good place to
