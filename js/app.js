@@ -189,7 +189,7 @@ class Player {
     }
     // prevent player from being out of canvas 
     checkBroder(){
-        if (this.x < -50 || this.x >= 450 || this.y <-200 || this.y >=500)
+        if (this.x < -50 || this.x >= 450 || this.y <-200 || this.y >=450)
         {
             
             this.reset();
