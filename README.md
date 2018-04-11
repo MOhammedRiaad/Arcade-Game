@@ -22,7 +22,7 @@ PROJECT DESCRIPTION
 - Use arrow keys to move up, down, left, right.
 - Try to avoid bugs.
 - Colliding with bugs causes your life and score to reduce by 1
-- Try to reach water to win the game 
+- Try to reach the grass Side to win the game 
 - If you use alll the lives, game is lost!
 - Good Luck! and have fun!
 
@@ -61,6 +61,6 @@ PROJECT DESCRIPTION
 
 Thank you For Playing < MY Classic Arcade Game > ;
 
-#### Created by <Mohamed Riaad>
+#### Created by < Mohamed Riaad >
 
 *********************************************
