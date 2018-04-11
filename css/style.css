@@ -1,9 +1,14 @@
 body {
     text-align: center;
 }
-#player {
-flex-wrap: wrap;    
-width: 100px;
-list-style-type: none;
-display: inline-flex;
+.Title h1{
+    color: blue ;
+    font: fantasy;
+}
+.score{
+    color: brown ;
+    padding: 5px;
+    margin: auto;
+
+
 }
