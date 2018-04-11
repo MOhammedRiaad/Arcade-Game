@@ -92,7 +92,7 @@ var Engine = (function(global) {
      * render methods.
      */
     function updateEntities(dt) {
-        gems.update();
+        
         allEnemies.forEach(function(enemy) {
             enemy.update(dt);
         });
@@ -111,6 +111,7 @@ var Engine = (function(global) {
          * for that particular row of the game level.
          */
         var rowImages = [
+                
                 'images/grass-block.png',   // Top row is block
                 'images/stone-block.png',   // Row 1 of 3 of stone
                 'images/stone-block.png',   // Row 2 of 3 of stone
@@ -138,6 +139,7 @@ var Engine = (function(global) {
                  * so that we get the benefits of caching these images, since
                  * we're using them over and over.
                  */
+                
                 ctx.drawImage(Resources.get(rowImages[row]), col * 101, row * 83);
             }
         }
@@ -158,7 +160,7 @@ var Engine = (function(global) {
         });
 
         player.render();
-       gems.render();
+      
     }
 
     /* This function does nothing but it could have been a good place to
@@ -179,7 +181,7 @@ var Engine = (function(global) {
         'images/grass-block.png',
         'images/enemy-bug.png',
         'images/char-boy.png',
-        'images/Gem-Orange.png'
+        
     ]);
     Resources.onReady(init);
 

@@ -1,16 +1,25 @@
-// Enemies our player must avoid
+//----------------------/
+/*
+Classic arcade game v.1
+by Mohamed Riaad 
+created on 
+11/4/2018
+*/
+//----------------------/
+//to prvent the timer from being double or accelerate 
 let st = true;
+//apend the score to the screen and wining 
 let LifeDiv = document.querySelector('.life');
 let winDiv = document.querySelector('.Wins');
 LifeDiv.innerHTML = 'You have ( 5 ) Lives ' ;
 winDiv.innerHTML = 'You Won ( 0 ) Times ';
 
- 
+// set a random position for the bugs on the screen 
 var getRandomPosition = function() {
     var number = Math.floor((Math.random() * 3) + 1);
     return number;
 };
-
+// Enemies our player must avoid
 class Enemy {
     constructor() {
     // Variables applied to each of our instances go here,
@@ -62,16 +71,18 @@ class Player {
         this.gemsCollected = 0;
     }
     update(dt){
-        this.checkGameWin();
+        
         this.checkBroder();
         this.checkCollisions();
-        
+        this.checkGameWin();
         this.checkGameOver();
                
     }
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+
+    // check the player have lives or game is over 
     checkGameOver(){
         if (this.life == 0)
         {
@@ -84,6 +95,7 @@ class Player {
             
         }
     }
+    // set alose message to the screen 
     LoseMessage() {
         let txt;
         let person = prompt("Please enter your name:", "Your Name");
@@ -94,13 +106,14 @@ class Player {
         }
         document.getElementById("demo").innerHTML = txt;
     };
+    // to check if the playes is still have lifes 
     checkGameWin(){
-        if (this.y <=5)
+        if (this.y <=-15)
         {
          this.winGame();
         }
     }
-
+// reset the game when the player is game over 
     gameReset(){
         this.life = 5;
         this.win = 0;
@@ -110,6 +123,7 @@ class Player {
         LifeDiv.innerHTML = `You have ( ${this.life} ) Lives ` ;
         winDiv.innerHTML = `You Won ( ${this.win} ) Times  `;
     }
+    // win the game and add more diffculty to the screen 
     winGame(){
         this.win +=1 ;
         winDiv.innerHTML = `You Won ( ${this.win} ) Times  ` ;
@@ -135,6 +149,7 @@ class Player {
 			
 		}
     }
+    // handle the playe use
     loseGame(){
         this.win -= 1;
         this.life -= 1;
@@ -143,7 +158,7 @@ class Player {
     }
     
 
-
+//handle the input keyboard for the player movment 
     handleInput(action_p){
         
         if(st==true){
@@ -172,26 +187,29 @@ class Player {
 
 
     }
+    // prevent player from being out of canvas 
     checkBroder(){
-        if (this.x <= 10 || this.x >= 450 || this.y <=10 || this.y >=400)
+        if (this.x < -50 || this.x >= 450 || this.y <-200 || this.y >=500)
         {
+            
             this.reset();
         }
     }
+    // reset the player to his position if reach the edge of canvas 
     reset(){
         this.x = 200;
         this.y = 410;
     }
 
     
-
+// this method is to chech the player and the enemies and the death 
     checkCollisions(){
     var len = 	 allEnemies.length;
     for (var i = 0; i < len; i++) {
-        if ((allEnemies[i].x) <= this.x + 30 &&
-            (allEnemies[i].x + 30) >= (this.x) &&
-            (allEnemies[i].y)<= this.y + 30 &&
-            (allEnemies[i].y + 30) >= (this.y)) {
+        if ((allEnemies[i].x) <= this.x + 40 &&
+            (allEnemies[i].x + 40) >= (this.x) &&
+            (allEnemies[i].y)<= this.y + 40 &&
+            (allEnemies[i].y + 40) >= (this.y)) {
             this.loseGame();
             alert('YOU LOSE');
             this.reset();
@@ -202,24 +220,8 @@ class Player {
 
 }
 
+// this function is to show the gems to the screen 
 
-class Gem  {
-    constructor() {
-
-        this.sprite = 'images/Gem-Orange.png';
-        this.x = 0;
-        this.y = 70;
-    }
-
-    update(dt){
-
-    }
-
-
-    render() {
-        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-    }
-}
 // @description game timer
 var second = 0, minute = 0; hour = 0;
 var timer = document.querySelector(".timer");
@@ -239,7 +241,7 @@ function startTimer(){
         }
     },1000);
 }
-
+// this function is to reset the timer 
 function resetTimer(){
     second=0;
     minute=0;
@@ -254,7 +256,7 @@ function resetTimer(){
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-let gems = new Gem();
+
 let player = new Player();
 let allEnemies = [];
 for (let i = 0; i < 3; i++) {
