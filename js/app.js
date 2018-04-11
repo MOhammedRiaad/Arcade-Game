@@ -75,12 +75,25 @@ class Player {
     checkGameOver(){
         if (this.life == 0)
         {
-            alert('Game Over!!!');
-            this.game = false;
+            this.LoseMessage();
             this.gameReset();
+            this.game = false;
+            
             resetTimer();
+            
+            
         }
     }
+    LoseMessage() {
+        let txt;
+        let person = prompt("Please enter your name:", "Your Name");
+        if (person == null || person == "") {
+            txt = "User cancelled the prompt.";
+        } else {
+            txt = "Thank you " + person + "!  for Playing the Game?";
+        }
+        document.getElementById("demo").innerHTML = txt;
+    };
     checkGameWin(){
         if (this.y <=5)
         {
@@ -94,7 +107,8 @@ class Player {
         this.game = true;
         this.reset();
         resetTimer();
-        
+        LifeDiv.innerHTML = `You have ( ${this.life} ) Lives ` ;
+        winDiv.innerHTML = `You Won ( ${this.win} ) Times  `;
     }
     winGame(){
         this.win +=1 ;
@@ -159,7 +173,7 @@ class Player {
 
     }
     checkBroder(){
-        if (this.x <= 10 || this.x >= 450 || this.y <=10 || this.y >=590)
+        if (this.x <= 10 || this.x >= 450 || this.y <=10 || this.y >=400)
         {
             this.reset();
         }
@@ -192,9 +206,9 @@ class Player {
 class Gem  {
     constructor() {
 
-        this.sprite = 'images/gem-orange.png';
+        this.sprite = 'images/Gem-Orange.png';
         this.x = 0;
-        this.y = ((getRandomPosition()) * 5);
+        this.y = 70;
     }
 
     update(dt){
