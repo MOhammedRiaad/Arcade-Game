@@ -30,14 +30,14 @@ PROJECT DESCRIPTION
 ## WHAT'S INCLUDED
 ----------------------
 
-###A) css
+### A) css
 	1) style.css
 		- css file for index.html where are the magic take place .
 
-###B) images
+### B) images
 	- Consists of images used in game and the the Used resources .
 
-###C) js
+### C) js
 	1)app.js
 		- contains javascript code that handles game functionality using the new ECMA 6 Js 
 	2)engine.js
@@ -47,20 +47,20 @@ PROJECT DESCRIPTION
 	3)resource.js
 		- it is a simple image loading utility
 
-###D) index.html
+### D) index.html
 	- Browser creates DOM tree from this html file.
 	- Displays web contents of game
 	- Canvases the game
 	- The Timer starts with the game start .
 	- The Player Score and lifes 
 
-###E) readme.txt
+### E) readme.txt
 	- States Overall description of project
 
-=========================================================================================
+********************************************************************
 
-Thank you For Playing < MY Game > ;
+Thank you For Playing < MY Classic Arcade Game > ;
 
-####Created by <Mohamed Riaad>
+#### Created by <Mohamed Riaad>
 
-====================
+*********************************************
